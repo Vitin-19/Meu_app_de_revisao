@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text, StyleSheet } from "react-native"
-import green from "../constants/greenColor.js"
+import { green } from "../constants/Colors.js"
 
 const WhiteButton = ({children,style}) => {
     return(
