@@ -1,55 +1,121 @@
-import { TextInput, View, Image, StyleSheet } from "react-native";
+import { TextInput, View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Checkbox from "expo-checkbox";
 import WhiteButton from "../components/WhiteButton";
 import GreenButton from "../components/GreenButton";
+import { gray, green } from "../constants/Colors";
+import { useFonts } from "expo-font";
+import { Icon } from "react-native-vector-icons/MaterialCommunityIcons";
+import { useState } from "react";
 
-const Login = ({navigation}) => {
-    return(
-        <View>
-            <View>
-                <Text>Acesse</Text>
-                <Text>com E-mail e senha</Text>
-            </View>
 
-            <View>
-                <Text>E-mail</Text>
-                <TextInput
-                    keyboardType="email-address"
-                    placeholder="Digite seu E-mail"
-                />
-            </View>
+const Login = ({ navigation }) => {
+    const [fonts] = useFonts({
+        "Poppins-SemiBold": require("../../assets/fonts/Poppins-SemiBold.ttf"),
+        "Poppins-Regular": require("../../assets/fonts/Poppins-Regular.ttf"),
+        "Poppins-Medium": require("../../assets/fonts/Poppins-Medium.ttf"),
+        "Poppins-Light": require("../../assets/fonts/Poppins-Light.ttf")
+    });
 
-            <View>
-                <Text></Text>
-                <TextInput/>
-            </View>
+    const [showPassword, setShowPassoword] = useState(false);
 
-            <View>
-                <Checkbox/>
-                <Text></Text>
-            </View>
 
-            <View>
-                <WhiteButton><Text></Text></WhiteButton>
-                <GreenButton><Text></Text></GreenButton>
-            </View>
+    return (
+        <View style={styles.container}>
+            <View style={styles.top} />
+            <View style={{ padding: 30 }}>
+                <View style={styles.back}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Text style={{ fontSize: 50, color: green, fontFamily: "Poppins-Light" }}>{"<"}</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.titles}>
+                    <Text style={styles.titulo}>Acesse</Text>
+                    <Text style={styles.txt}>com E-mail e senha</Text>
+                </View>
 
-            <View>
-                <View/>
-                <Text></Text>
-                <View/>
-            </View>
+                <View style={styles.inputContainer}>
+                    <Text>E-mail</Text>
+                    <TextInput
+                        keyboardType="email-address"
+                        placeholder="Digite seu E-mail"
+                        placeholderTextColor={styles.input.color}
+                        style={styles.input}
+                    />
+                </View>
 
-            <View>
-                <Image source={require("../../assets/Google.png")}/>
-                <Image source={require("../../assets/Facebook.png")}/>
+                <View style={styles.inputContainer}>
+                    <Text>Senha</Text>
+                    <TextInput 
+                        placeholder="Digite sua senha"
+                        placeholderTextColor={styles.input.color}
+                        style={styles.input}
+                    />
+                </View>
+
+                <View>
+                    <Checkbox />
+                    <Text></Text>
+                </View>
+
+                <View>
+                    <WhiteButton><Text></Text></WhiteButton>
+                    <GreenButton><Text></Text></GreenButton>
+                </View>
+
+                <View>
+                    <View />
+                    <Text></Text>
+                    <View />
+                </View>
+
+                <View>
+                    <Image source={require("../../assets/Google.png")} />
+                    <Image source={require("../../assets/Facebook.png")} />
+                </View>
             </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    
+    container: {
+        flex: 1,
+        backgroundColor: "#ffffff",
+        justifyContent: "center",
+    },
+    top: {
+        backgroundColor: gray,
+        height: 40,
+        bottom: 102,
+        justifyContent: "center",
+        width: "100%"
+    },
+    back: {
+        bottom: 120
+    },
+    titles: {
+        flex: 1,
+        flexDirection:"column",
+        bottom: 140,
+    },
+    titulo: {
+        fontFamily: "Poppins-Medium",
+        fontSize: 45,
+        height:60,
+    },
+    txt: {
+        fontFamily: "Poppins-Regular",
+        height:17
+    },
+    inputContainer:{
+        marginTop:20
+    },
+    input:{
+        backgroundColor:"#5c86e046",
+        color:"#5351dac2",
+        height:60,
+        borderRadius:5, 
+    }
 })
 
 export default Login;
