@@ -1,12 +1,13 @@
-import { TextInput, View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { TextInput, View, Image, StyleSheet, Text, TouchableOpacity, Dimensions } from "react-native";
 import Checkbox from "expo-checkbox";
 import WhiteButton from "../components/WhiteButton";
 import GreenButton from "../components/GreenButton";
 import { gray, green } from "../constants/Colors";
 import { useFonts } from "expo-font";
-import { Icon } from "react-native-vector-icons/MaterialCommunityIcons";
+import  Icon  from "react-native-vector-icons/MaterialCommunityIcons";
 import { useState } from "react";
 
+const windowWidth = Dimensions.get("window").width;
 
 const Login = ({ navigation }) => {
     const [fonts] = useFonts({
@@ -33,8 +34,8 @@ const Login = ({ navigation }) => {
                     <Text style={styles.txt}>com E-mail e senha</Text>
                 </View>
 
+                <Text>E-mail</Text>
                 <View style={styles.inputContainer}>
-                    <Text>E-mail</Text>
                     <TextInput
                         keyboardType="email-address"
                         placeholder="Digite seu E-mail"
@@ -43,18 +44,31 @@ const Login = ({ navigation }) => {
                     />
                 </View>
 
+                <Text>Senha</Text>
                 <View style={styles.inputContainer}>
-                    <Text>Senha</Text>
                     <TextInput 
                         placeholder="Digite sua senha"
                         placeholderTextColor={styles.input.color}
+                        secureTextEntry={!showPassword}
                         style={styles.input}
                     />
+                    <TouchableOpacity onPress={() => {
+                        if(showPassword) setShowPassoword(false)
+                        else setShowPassoword(true)
+                    }}
+                        style={{marginRight:20, marginTop:4}}
+                    >
+                        <Icon
+                            name={showPassword? 'eye' : 'eye-off'}
+                            color={"#00000"}
+                            size={30}
+                        />
+                    </TouchableOpacity>
                 </View>
 
-                <View>
-                    <Checkbox />
-                    <Text></Text>
+                <View style={styles.checkboxContainer}>
+                    <Checkbox style={styles.checkbox}/>
+                    <Text>Lembrar senha</Text>
                 </View>
 
                 <View>
@@ -108,13 +122,26 @@ const styles = StyleSheet.create({
         height:17
     },
     inputContainer:{
-        marginTop:20
+        marginBottom:20,
+        flexDirection:"row",
+        display:"flex",
+        justifyContent:"center",
+        alignContent:"center",
+        backgroundColor:"#5c86e046",
+        borderRadius:5,
+        paddingVertical:8
     },
     input:{
-        backgroundColor:"#5c86e046",
         color:"#5351dac2",
-        height:60,
-        borderRadius:5, 
+        flex: 1,
+        width:windowWidth * 0.50
+    },
+    checkboxContainer:{
+        flexDirection:"row"
+    },
+    checkbox:{
+        borderColor:green,
+        marginRight:10
     }
 })
 

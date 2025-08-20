@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     top: {
         backgroundColor: gray,
         height: 40,
-        bottom:68,
+        bottom:77,
         justifyContent:"center",
         width:"100%"
     },
