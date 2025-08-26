@@ -4,7 +4,7 @@ import WhiteButton from "../components/WhiteButton";
 import GreenButton from "../components/GreenButton";
 import { gray, green } from "../constants/Colors";
 import { useFonts } from "expo-font";
-import  Icon  from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useState } from "react";
 
 const windowWidth = Dimensions.get("window").width;
@@ -18,6 +18,7 @@ const Login = ({ navigation }) => {
     });
 
     const [showPassword, setShowPassoword] = useState(false);
+    const [check, setCheck] = useState(false);
 
 
     return (
@@ -46,43 +47,55 @@ const Login = ({ navigation }) => {
 
                 <Text>Senha</Text>
                 <View style={styles.inputContainer}>
-                    <TextInput 
+                    <TextInput
                         placeholder="Digite sua senha"
                         placeholderTextColor={styles.input.color}
                         secureTextEntry={!showPassword}
                         style={styles.input}
                     />
                     <TouchableOpacity onPress={() => {
-                        if(showPassword) setShowPassoword(false)
+                        if (showPassword) setShowPassoword(false)
                         else setShowPassoword(true)
                     }}
-                        style={{marginRight:20, marginTop:4}}
+                        style={{ marginRight: 20, marginTop: 4 }}
                     >
                         <Icon
-                            name={showPassword? 'eye' : 'eye-off'}
-                            color={"#00000"}
+                            name={showPassword ? 'eye-outline' : 'eye-off-outline'}
+                            color={"#5351dac2"}
                             size={30}
                         />
                     </TouchableOpacity>
                 </View>
 
-                <View style={styles.checkboxContainer}>
-                    <Checkbox style={styles.checkbox}/>
-                    <Text>Lembrar senha</Text>
+                <View style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+                    <View style={styles.checkboxContainer}>
+                        <Checkbox style={styles.checkbox}
+                            value={check}
+                            onValueChange={setCheck}
+                        />
+                        <Text>Lembrar senha</Text>
+                    </View>
+                    <View>
+                        <Text>Esqueci minha senha</Text>
+                    </View>
                 </View>
 
-                <View>
-                    <WhiteButton><Text></Text></WhiteButton>
-                    <GreenButton><Text></Text></GreenButton>
+                <View style={styles.buttonContainer}>
+                    <GreenButton style={styles.button}>
+                        <Text style={{ color: "#ffffff" }}>Acessar</Text>
+                    </GreenButton>
+                    <WhiteButton style={styles.button}>
+                        <Text>Cadastrar</Text>
+                    </WhiteButton>
                 </View>
 
-                <View>
-                    <View />
-                    <Text></Text>
-                    <View />
+                <View style={styles.divContainer}>
+                    <View style={styles.line} />
+                    <Text style={{ color: styles.line.backgroundColor }}>Ou continue com</Text>
+                    <View style={styles.line} />
                 </View>
 
-                <View>
+                <View style={styles.imageContainer}>
                     <Image source={require("../../assets/Google.png")} />
                     <Image source={require("../../assets/Facebook.png")} />
                 </View>
@@ -100,48 +113,82 @@ const styles = StyleSheet.create({
     top: {
         backgroundColor: gray,
         height: 40,
-        bottom: 102,
+        bottom: 97,
         justifyContent: "center",
         width: "100%"
     },
     back: {
-        bottom: 120
+        bottom: 130
     },
     titles: {
         flex: 1,
-        flexDirection:"column",
+        flexDirection: "column",
         bottom: 140,
     },
     titulo: {
         fontFamily: "Poppins-Medium",
         fontSize: 45,
-        height:60,
+        height: 60,
     },
     txt: {
         fontFamily: "Poppins-Regular",
-        height:17
+        height: 17
     },
-    inputContainer:{
-        marginBottom:20,
-        flexDirection:"row",
-        display:"flex",
-        justifyContent:"center",
-        alignContent:"center",
-        backgroundColor:"#5c86e046",
-        borderRadius:5,
-        paddingVertical:8
+    inputContainer: {
+        marginBottom: 20,
+        flexDirection: "row",
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
+        backgroundColor: "#5c86e046",
+        borderRadius: 5,
+        paddingVertical: 8
     },
-    input:{
-        color:"#5351dac2",
+    input: {
+        color: "#5351dac2",
         flex: 1,
-        width:windowWidth * 0.50
+        width: windowWidth * 0.50
     },
-    checkboxContainer:{
-        flexDirection:"row"
+    checkboxContainer: {
+        flexDirection: "row"
     },
-    checkbox:{
-        borderColor:green,
-        marginRight:10
+    checkbox: {
+        borderColor: green,
+        marginRight: 10
+    },
+    button: {
+        display: 'flex',
+        flexDirection: "row",
+        height: 70,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 10,
+        marginTop: 30,
+        width: 150
+    },
+    buttonContainer: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between"
+    },
+    divContainer: {
+        marginTop: 45,
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignItems: "center"
+    },
+    line: {
+        borderColor: "#5c5b5bff",
+        borderWidth: 0.2,
+        width: 90,
+        height: 0.1
+    },
+    imageContainer: {
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"space-evenly",
+        marginTop:20
     }
 })
 
