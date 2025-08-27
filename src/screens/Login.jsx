@@ -76,7 +76,9 @@ const Login = ({ navigation }) => {
                         <Text>Lembrar senha</Text>
                     </View>
                     <View>
-                        <Text>Esqueci minha senha</Text>
+                        <TouchableOpacity>
+                            <Text>Esqueci minha senha</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
 
@@ -96,8 +98,12 @@ const Login = ({ navigation }) => {
                 </View>
 
                 <View style={styles.imageContainer}>
-                    <Image source={require("../../assets/Google.png")} />
-                    <Image source={require("../../assets/Facebook.png")} />
+                    <TouchableOpacity>
+                        <Image source={require("../../assets/Google.png")} />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image source={require("../../assets/Facebook.png")} />
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>

@@ -26,13 +26,13 @@ const Home = ({ navigation }) => {
             </View>
 
             <View style={{padding:30}}>
-                <GreenButton style={styles.button} onPress={() => navigation.navigate("Login")}>
+                <GreenButton style={styles.button}>
                     <View style={styles.googleContainer}>
                         <Image source={require('../../assets/Google.png')} style={styles.google} />
                     </View>
                     <Text style={{ color: "#ffffff",width:"80%", paddingLeft:38 }}>Como deseja acessar</Text>
                 </GreenButton>
-                <WhiteButton style={styles.button}>
+                <WhiteButton style={styles.button} onPress={() => navigation.navigate("Login")}>
                     <Text>Outras opções</Text>
                 </WhiteButton>
             </View>
